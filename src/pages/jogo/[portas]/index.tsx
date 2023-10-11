@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PortaModel from '@/model/porta';
+import Head from 'next/head';
 
 export default function Home() {
   const router = useRouter()
@@ -14,7 +15,7 @@ export default function Home() {
   
   useEffect(() => {
     const portas = +(router.query.portas ?? 3)
-    // gera um número aleatório mas que não pode ser 0
+    
     const temPresente = Math.floor(Math.random() * portas) + 1
 
     setPortas(criarPortas(portas, temPresente))
@@ -31,6 +32,9 @@ export default function Home() {
 
   return (
     <div id={styles.jogo}>
+        <Head>
+          <title>Monty Hall - Jogo</title>
+        </Head>
         <div className={styles.portas}>
             {renderizarPortas()}
         </div>
