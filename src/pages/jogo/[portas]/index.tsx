@@ -4,10 +4,11 @@ import Porta from '../../../components/Porta';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import PortaModel from '@/model/porta';
 
 export default function Home() {
   const router = useRouter()
-  const [portas, setPortas] = useState([])
+  const [portas, setPortas] = useState([] as any)
 
 
   
@@ -21,7 +22,7 @@ export default function Home() {
 
 
   function renderizarPortas() {
-    return portas.map(porta => {
+    return portas.map((porta: PortaModel) => {
       return <Porta key={porta.numero} value={porta} 
       onChange={novaPorta => setPortas(atualizarPortas(portas, novaPorta))}
       />
